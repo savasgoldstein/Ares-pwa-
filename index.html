@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="ARES – Krypto-Trading Forschungsdashboard">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <title>ARES Dashboard</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2e;--panel2:#172438;--line:#26364d;--muted:#9aabc2;--text:#edf3fb;--green:#48d6a0;--red:#ff7785;--blue:#77aaff;--amber:#f3c66b}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(160deg,#101b2d,#080e18 55%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+    .wrap{max-width:760px;margin:auto;padding:env(safe-area-inset-top) 16px calc(24px + env(safe-area-inset-bottom))}
+    header{display:flex;justify-content:space-between;align-items:center;padding:20px 2px 18px}
+    .brand{display:flex;gap:11px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:#203552;display:grid;place-items:center;color:#8eb8ff;font-weight:900;font-size:21px;border:1px solid #385477}
+    h1{font-size:22px;margin:0;letter-spacing:.12em} .sub{color:var(--muted);font-size:12px;margin-top:2px}
+    .pill{font-size:11px;border:1px solid #806b3e;color:var(--amber);padding:6px 9px;border-radius:20px;white-space:nowrap}
+    .hero{background:linear-gradient(135deg,#1b304b,#142237);border:1px solid #2c4564;border-radius:20px;padding:18px;margin-bottom:14px}
+    .eyebrow{font-size:11px;color:#a9bdd8;letter-spacing:.12em;text-transform:uppercase}.hero h2{font-size:25px;margin:8px 0 5px}.hero p{color:#bdcbe0;margin:0;line-height:1.45;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+    .card{background:rgba(18,29,46,.94);border:1px solid var(--line);border-radius:16px;padding:15px;min-width:0}
+    .label{color:var(--muted);font-size:12px}.value{font-size:23px;font-weight:750;margin:7px 0 2px;font-variant-numeric:tabular-nums}.small{font-size:12px;color:var(--muted)}
+    .positive{color:var(--green)}.negative{color:var(--red)}.neutral{color:var(--amber)}
+    section{margin-top:19px} h3{font-size:15px;margin:0 0 10px}
+    .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #223148}.row:last-child{border:0}
+    .row strong{font-size:13px}.row span{font-size:12px;color:var(--muted);text-align:right}
+    .tag{border-radius:7px;padding:4px 7px;font-size:11px;background:#263750;color:#c6d8f1}
+    .tabs{position:sticky;bottom:0;display:flex;gap:6px;padding:10px;background:rgba(11,18,32,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);margin:18px -16px 0}
+    .tabs button{flex:1;background:transparent;border:0;color:var(--muted);padding:10px 3px;border-radius:10px;font-size:12px}
+    .tabs button.active{background:#20334d;color:#fff}
+    .panel{display:none}.panel.active{display:block}
+    button.action{background:#29466a;color:#fff;border:1px solid #42648e;border-radius:11px;padding:10px 13px;font-weight:650}
+    .notice{font-size:12px;line-height:1.5;color:#c2cde0;background:#18263a;border:1px solid #30445f;border-radius:12px;padding:12px;margin-top:13px}
+    .bar{height:7px;background:#25364e;border-radius:20px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:38%;background:linear-gradient(90deg,#4a9cff,#48d6a0);border-radius:20px}
+    .mutedline{font-size:11px;color:var(--muted);margin-top:8px}
+    @media(min-width:600px){.wrap{padding-left:24px;padding-right:24px}.tabs{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">A</div><div><h1>ARES</h1><div class="sub">AUTONOMOUS RESEARCH SYSTEM</div></div></div>
+    <div class="pill">SIMULATION · V4.9.5</div>
+  </header>
+
+  <main>
+    <div id="dashboard" class="panel active">
+      <div class="hero">
+        <div class="eyebrow">Systemübersicht</div>
+        <h2>Forschung statt Echtgeldhandel.</h2>
+        <p>ARES analysiert BTC und ETH, vergleicht Strategien und prüft Risiken. Diese App zeigt den aktuellen Forschungsstand – keine Live-Handelsverbindung.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="label">BTC · Simulation</div><div class="value positive">+6,091 %</div><div class="small">8 Testtrades · 60 % Positionsannahme</div></div>
+        <div class="card"><div class="label">ETH · Simulation</div><div class="value positive">+5,290 %</div><div class="small">13 Testtrades · 60 % Positionsannahme</div></div>
+        <div class="card"><div class="label">Historische Daten</div><div class="value">1 Jahr</div><div class="small">Stundenkerzen · BTC / ETH</div></div>
+        <div class="card"><div class="label">Testtrades</div><div class="value">21</div><div class="small">Kleine Stichprobe – nicht belastbar</div></div>
+      </div>
+      <section class="card">
+        <h3>Aktueller Systemstatus</h3>
+        <div class="row"><strong>Marktdaten</strong><span class="positive">Historische Daten geladen</span></div>
+        <div class="row"><strong>Strategie</strong><span>BREAKOUT · Forschungsstatus</span></div>
+        <div class="row"><strong>Machine Learning</strong><span class="neutral">Noch nicht implementiert</span></div>
+        <div class="row"><strong>Live-Orders</strong><span class="negative">Deaktiviert</span></div>
+      </section>
+      <div class="notice"><strong>Wichtiger Hinweis:</strong> Die positiven Simulationsergebnisse beruhen auf nur 21 Trades und sind stark von einzelnen großen Gewinnern abhängig. Sie belegen keine dauerhafte Profitabilität.</div>
+    </div>
+
+    <div id="strategies" class="panel">
+      <section class="card">
+        <h3>Strategie-Labor</h3>
+        <div class="row"><strong>BREAKOUT</strong><span class="tag">Weiter untersuchen</span></div>
+        <p class="small">Ausbrüche über vorherige Kurswiderstände. Bisher bester Forschungsansatz, aber noch nicht robust validiert.</p>
+        <div class="row"><strong>TREND</strong><span class="negative">Bisher schwach</span></div>
+        <p class="small">Versucht, länger anhaltende Aufwärtsbewegungen zu nutzen.</p>
+        <div class="row"><strong>MEAN REVERSION</strong><span class="negative">Kein stabiler Vorteil</span></div>
+        <p class="small">Sucht nach übertriebenen Kursbewegungen und Rückkehr zum Mittelwert.</p>
+      </section>
+      <div class="notice">Nächster Entwicklungsschritt: V4.9.6 – unabhängige Validierung mit strikt getrennten Trainings- und Testdaten.</div>
+    </div>
+
+    <div id="risk" class="panel">
+      <section class="card">
+        <h3>Vorgesehene Risikogrenzen</h3>
+        <div class="row"><strong>Risiko je Trade</strong><span>0,5 %</span></div>
+        <div class="row"><strong>Maximal offene Positionen</strong><span>2</span></div>
+        <div class="row"><strong>Maximale Kapitalbindung</strong><span>60 %</span></div>
+        <div class="row"><strong>Tagesverlustgrenze</strong><span>1,5 %</span></div>
+        <div class="row"><strong>Wochenverlustgrenze</strong><span>3,0 %</span></div>
+        <div class="row"><strong>Hebel</strong><span>Keiner · Spot-Konzept</span></div>
+        <div class="notice">Diese Regeln sind derzeit ein Entwicklungsentwurf. Das Risikomanagement ist noch nicht als produktionsreife, durchgehend überwachte Ausführungssteuerung implementiert.</div>
+      </section>
+    </div>
+
+    <div id="roadmap" class="panel">
+      <section class="card">
+        <h3>ARES Entwicklungsplan</h3>
+        <div class="row"><strong>V4.9.5 · Forschungsdashboard</strong><span class="positive">Daten dokumentiert</span></div>
+        <div class="row"><strong>V4.9.6 · Unabhängige Validierung</strong><span class="neutral">Als Nächstes</span></div>
+        <div class="row"><strong>V5.0 · Robustes Strategie-Labor</strong><span>Geplant</span></div>
+        <div class="row"><strong>V5.1 · Machine Learning</strong><span>Geplant</span></div>
+        <div class="row"><strong>V5.2 · Kontrollierte Evolution</strong><span>Geplant</span></div>
+        <div class="row"><strong>V6.0 · Paper Trading</strong><span>Später</span></div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="tabs" aria-label="Navigation">
+    <button class="active" data-tab="dashboard">Übersicht</button>
+    <button data-tab="strategies">Strategien</button>
+    <button data-tab="risk">Risiko</button>
+    <button data-tab="roadmap">Roadmap</button>
+  </nav>
+  <div class="mutedline">ARES ist ein Forschungsprototyp. Keine Anlageberatung, keine Orderausführung.</div>
+</div>
+<script>
+  const tabs=[...document.querySelectorAll('.tabs button')];
+  const panels=[...document.querySelectorAll('.panel')];
+  tabs.forEach(btn=>btn.addEventListener('click',()=>{
+    tabs.forEach(b=>b.classList.toggle('active',b===btn));
+    panels.forEach(p=>p.classList.toggle('active',p.id===btn.dataset.tab));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+</script>
+</body>
+</html>
